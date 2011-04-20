@@ -1,0 +1,85 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://sorgalla.com/projects/jcarousel/lib/jquery.jcarousel.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://sorgalla.com/projects/jcarousel/skins/tango/skin.css" />
+<style type="text/css">
+/* 6個表示されるように、skin.cssを上書き */
+.jcarousel-skin-tango .jcarousel-container-vertical {
+    height: 500px !important;
+}
+.jcarousel-skin-tango .jcarousel-clip-vertical {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+#container {
+  width: 950px;
+}
+#side {
+  float: left;
+}
+#view {
+  float: left;
+  width: 700px;
+}
+
+#mycarousel li a img {
+  border: 3px solid transparent;
+}
+
+#mycarousel li a.selected img {
+  border: 3px solid red;
+}
+</style>
+<script>
+$(function() {
+  if (location.search) {
+    var first = parseInt(/f=(\d+)/.exec(location.search)[1]);
+    var select = parseInt(/s=(\d+)/.exec(location.search)[1]);
+  }
+  
+  $('#mycarousel').jcarousel({
+    vertical: true,
+    scroll: 1,
+    start: first
+  });
+  
+  if (first) {
+    $('.jcarousel-item a').eq(select).addClass('selected');
+  }
+  
+  //この部分は仕様に合わせて変える
+  $('.jcarousel-item a').click(function(e) {
+    e.preventDefault();
+    var first = $('#mycarousel').data('jcarousel').first;
+    var select = $('#mycarousel li a').index(this);
+    location.href = this.href + '?f=' + first + '&s=' + select;
+  });
+});
+</script>
+</head>
+<body>
+<div id="container">
+<div id="side">
+<ul id="mycarousel" class="jcarousel-skin-tango">
+  <li><a href="a.html"><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="b.html"><img src="http://static.flickr.com/75/199481072_b4a0d09597_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="c.html"><img src="http://static.flickr.com/57/199481087_33ae73a8de_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="d.html"><img src="http://static.flickr.com/77/199481108_4359e6b971_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="e.html"><img src="http://static.flickr.com/58/199481143_3c148d9dd3_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="f.html"><img src="http://static.flickr.com/72/199481203_ad4cdcf109_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="g.html"><img src="http://static.flickr.com/58/199481218_264ce20da0_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="h.html"><img src="http://static.flickr.com/69/199481255_fdfe885f87_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="i.html"><img src="http://static.flickr.com/60/199480111_87d4cb3e38_s.jpg" width="75" height="75" alt="" /></a></li>
+  <li><a href="j.html"><img src="http://static.flickr.com/70/229228324_08223b70fa_s.jpg" width="75" height="75" alt="" /></a></li>
+</ul>
+</div>
+
+<!-- コンテンツ -->
+<div id="view">
+bbb
+</div>
+</body>
+</html>
+
